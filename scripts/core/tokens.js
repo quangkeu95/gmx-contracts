@@ -99,29 +99,30 @@ module.exports = {
     }
   },
   arbitrumTestnet: {
+    // arbitrum goerli
     // https://docs.chain.link/docs/arbitrum-price-feeds/
-    btcPriceFeed: { address: "0x0c9973e7a27d00e656B9f153348dA46CaD70d03d" },
-    ethPriceFeed: { address: "0x5f0423B1a6935dc5596e7A24d98532b67A0AeFd8" },
-    usdtPriceFeed: { address: "0xb1Ac85E779d05C2901812d812210F6dE144b2df0" },
-    usdcPriceFeed: { address: "0xb1Ac85E779d05C2901812d812210F6dE144b2df0" }, // this is USDT price feed, chainlink doesn't have one for USDC
+    btcPriceFeed: { address: "0x6550bc2301936011c1334555e62A87705A81C12C" },
+    ethPriceFeed: { address: "0x62CAe0FA2da220f43a51F86Db2EDb36DcA9A5A08" },
+    usdtPriceFeed: { address: "0x0a023a3423D9b27A0BE48c768CCF2dD7877fEf5E" },
+    usdcPriceFeed: { address: "0x1692Bdd32F31b831caAc1b0c9fAF68613682813b" }, // this is USDT price feed, chainlink doesn't have one for USDC
     btc: {
-      address: "0xab952e6801daB7920B65b8aC918FF0F66a8a0F44",
+      address: "0x7E39581Dec1fe6EAb8Fac02771eE662E4b71EeAD",
       decimals: 18
     },
     eth: {
-      address: "0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681",
+      address: "0x3022f8132a97Cf8469c8922feB0657fA9779239C",
       decimals: 18
     },
     usdc: {
-      address: "0xb93cb5F5c6a56e060A5e5A9691229D2a7e2D234A",
+      address: "0xca119F7cA4cb6a7DC458546DB6a47C6cf08520FA",
       decimals: 18
     },
     usdt: {
-      address: "0xaB7ee1A7D5bc677e3A7ac694f2c156b3fFCaABC1",
+      address: "0x55c318A30c166c4980A55A4bEED8c443D94439cE",
       decimals: 18
     },
     nativeToken: {
-      address: "0xB47e6A5f8b33b3F17603C83a0535A9dcD7E32681",
+      address: "0x3022f8132a97Cf8469c8922feB0657fA9779239C",
       decimals: 18
     }
   },
@@ -137,7 +138,7 @@ module.exports = {
       isStrictStable: false,
       tokenWeight: 15000,
       minProfitBps: 0,
-      maxUsdgAmount: 110 * 1000 *1000,
+      maxUsdgAmount: 110 * 1000 * 1000,
       bufferAmount: 2500,
       isStable: false,
       isShortable: true,
@@ -328,7 +329,7 @@ module.exports = {
       isStrictStable: false,
       tokenWeight: 5000,
       minProfitBps: 0,
-      maxUsdgAmount: 6.3 * 1000 *1000,
+      maxUsdgAmount: 6.3 * 1000 * 1000,
       bufferAmount: 120000,
       isStable: false,
       isShortable: true,

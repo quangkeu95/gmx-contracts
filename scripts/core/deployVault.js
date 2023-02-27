@@ -1,9 +1,10 @@
-const { deployContract, contractAt , sendTxn } = require("../shared/helpers")
+const { deployContract, contractAt, sendTxn } = require("../shared/helpers")
 const { expandDecimals } = require("../../test/shared/utilities")
 const { toUsd } = require("../../test/shared/units")
 const { errors } = require("../../test/core/Vault/helpers")
 
-const network = (process.env.HARDHAT_NETWORK || 'mainnet');
+// const network = (process.env.HARDHAT_NETWORK || 'mainnet');
+const network = (process.env.HARDHAT_NETWORK);
 const tokens = require('./tokens')[network];
 
 async function main() {

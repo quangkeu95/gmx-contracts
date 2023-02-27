@@ -2,25 +2,30 @@ const fs = require('fs')
 const path = require('path')
 const parse = require('csv-parse')
 
-const network = (process.env.HARDHAT_NETWORK || 'mainnet');
+const network = (process.env.HARDHAT_NETWORK);
 
 const ARBITRUM = 42161
+const ARBITRUM_TESTNET = 421613
 const AVALANCHE = 43114
 
 const {
   ARBITRUM_URL,
   AVAX_URL,
   ARBITRUM_DEPLOY_KEY,
-  AVAX_DEPLOY_KEY
+  AVAX_DEPLOY_KEY,
+  ARBITRUM_TESTNET_URL,
+  ARBITRUM_TESTNET_DEPLOY_KEY,
 } = require("../../env.json")
 
 const providers = {
   arbitrum: new ethers.providers.JsonRpcProvider(ARBITRUM_URL),
+  arbitrumTestnet: new ethers.providers.JsonRpcProvider(ARBITRUM_TESTNET_URL),
   avax: new ethers.providers.JsonRpcProvider(AVAX_URL)
 }
 
 const signers = {
   arbitrum: new ethers.Wallet(ARBITRUM_DEPLOY_KEY).connect(providers.arbitrum),
+  arbitrumTestnet: new ethers.Wallet(ARBITRUM_TESTNET_DEPLOY_KEY).connect(providers.arbitrumTestnet),
   avax: new ethers.Wallet(ARBITRUM_DEPLOY_KEY).connect(providers.avax)
 }
 
@@ -31,9 +36,9 @@ function sleep(ms) {
 const readCsv = async (file) => {
   records = []
   const parser = fs
-  .createReadStream(file)
-  .pipe(parse({ columns: true, delimiter: ',' }))
-  parser.on('error', function(err){
+    .createReadStream(file)
+    .pipe(parse({ columns: true, delimiter: ',' }))
+  parser.on('error', function (err) {
     console.error(err.message)
   })
   for await (const record of parser) {
@@ -49,6 +54,10 @@ function getChainId(network) {
 
   if (network === "avax") {
     return 43114
+  }
+
+  if (network === "arbitrumTestnet") {
+    return ARBITRUM_TESTNET
   }
 
   throw new Error("Unsupported network")
@@ -101,6 +110,7 @@ async function deployContract(name, args, label, options) {
 
   let info = name
   if (label) { info = name + ":" + label }
+  const signer = signers[network];
   const contractFactory = await ethers.getContractFactory(name)
   let contract
   if (options) {
